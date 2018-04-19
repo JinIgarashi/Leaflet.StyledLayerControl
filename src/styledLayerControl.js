@@ -157,8 +157,8 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
             L.DomEvent.on(container, 'wheel', L.DomEvent.stopPropagation);
         } else {
             L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
-            L.DomEvent.on(container, 'mouseenter', function(){this._map.scrollWheelZoom.disable()});
-			L.DomEvent.on(container, 'mouseleave', function(){this._map.scrollWheelZoom.enable()});
+            L.DomEvent.on(container, 'mouseenter', this._mouseenter, this);
+			L.DomEvent.on(container, 'mouseleave', this._mouseleave, this);
         }
 
         var section = document.createElement('section');
@@ -558,6 +558,14 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
 
     _collapse: function() {
         this._container.className = this._container.className.replace(' leaflet-control-layers-expanded', '');
+    },
+    
+    _mouseenter:function(){
+    	this._map.scrollWheelZoom.disable();
+    },
+    
+    _mouseleave:function(){
+    	this._map.scrollWheelZoom.enable();
     }
 });
 
