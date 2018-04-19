@@ -157,6 +157,8 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
             L.DomEvent.on(container, 'wheel', L.DomEvent.stopPropagation);
         } else {
             L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
+            L.DomEvent.on(container, 'mouseenter', function(){this._map.scrollWheelZoom.disable()});
+			L.DomEvent.on(container, 'mouseleave', function(){this._map.scrollWheelZoom.enable()});
         }
 
         var section = document.createElement('section');
