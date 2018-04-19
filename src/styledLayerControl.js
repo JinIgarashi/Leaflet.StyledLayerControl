@@ -158,10 +158,8 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
             L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
         }
         
-        if (!L.Browser.mobile){
-        	L.DomEvent.on(container, 'mouseenter', this._mouseenter, this);
-			L.DomEvent.on(container, 'mouseleave', this._mouseleave, this);
-        }
+        L.DomEvent.on(container, 'mouseenter', this._mouseenter, this);
+		L.DomEvent.on(container, 'mouseleave', this._mouseleave, this);
 
         var section = document.createElement('section');
         section.className = 'ac-container ' + className + '-list';
@@ -189,6 +187,7 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
             }
 
             this._map.on('click', this._collapse, this);
+            this._map.on('click', this._mouseleave, this);
             // TODO keyboard accessibility
 
         } else {
