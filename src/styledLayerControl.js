@@ -144,7 +144,6 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
         this._update();
     },
 
-
     _initLayout: function() {
         var className = 'leaflet-control-layers',
             container = this._container = L.DomUtil.create('div', className);
@@ -157,7 +156,10 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
             L.DomEvent.on(container, 'wheel', L.DomEvent.stopPropagation);
         } else {
             L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
-            L.DomEvent.on(container, 'mouseenter', this._mouseenter, this);
+        }
+        
+        if (!L.Browser.mobile){
+        	L.DomEvent.on(container, 'mouseenter', this._mouseenter, this);
 			L.DomEvent.on(container, 'mouseleave', this._mouseleave, this);
         }
 
