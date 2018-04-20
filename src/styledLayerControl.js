@@ -563,10 +563,16 @@ L.Control.StyledLayerControl = L.Control.Layers.extend({
     
     _mouseenter:function(){
     	this._map.scrollWheelZoom.disable();
+    	this._map.dragging.disable();
+    	this._map.doubleClickZoom.disable();
+    	this._map.touchZoom.disable();
     },
     
     _mouseleave:function(){
     	this._map.scrollWheelZoom.enable();
+    	this._map.dragging.enable();
+    	this._map.doubleClickZoom.enable();
+    	this._map.touchZoom.enable();
     }
 });
 
